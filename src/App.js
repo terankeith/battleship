@@ -1,7 +1,7 @@
 import "./App.css"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { GameProvider } from "./components/context/GameContext"
-import { Start, Setup } from "./views"
+import { Start, Setup, ShipSelect } from "./views"
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Start} />
             <Route exact path="/setup" component={Setup} />
+            <Route exact path="/shipselect" component={ShipSelect} />
           </Switch>
         </div>
       </BrowserRouter>

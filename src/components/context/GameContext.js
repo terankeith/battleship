@@ -4,8 +4,9 @@ import PropTypes from "prop-types"
 export const STATE_NAME = "GAME_STATE"
 
 const initialState = {
-  player1: { name: "" },
-  player2: { name: "" }
+  player1: { name: "", ships: [] },
+  player2: { name: "", ships: [] },
+  playerTurn: 1
 }
 
 const persistedState = JSON.parse(sessionStorage.getItem(STATE_NAME))
@@ -16,21 +17,10 @@ const gameReducer = (state, action) => {
   switch (action.type) {
     case "UPDATE_PLAYER1":
       return { ...state, player1: action.payload }
-    case "ADD_HISTORY":
-      return { ...state, history: action.payload }
-    case "INCREMENT_STEPNUMBER":
-      return { ...state, currentStepNumber: state.currentStepNumber + 1 }
-    case "JUMP_TO_TURN":
-      return {
-        ...state,
-        currentStepNumber: action.payload
-      }
-    case "SET_STATUS":
-      return { ...state, status: action.payload }
-    case "SET_WINNER":
-      return { ...state, win: action.payload }
-    case "SORT_HISTORY":
-      return { ...state, history: action.payload }
+    case "UPDATE_PLAYER2":
+      return { ...state, player2: action.payload }
+    case "CHANGE_TURN":
+      return { ...state, playerTurn: action.payload }
     default:
       throw new Error(`Unhandled action type: ${action.type}`)
   }
